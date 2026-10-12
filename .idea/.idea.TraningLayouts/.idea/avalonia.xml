@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="TraningLayouts/App.axaml" value="TraningLayouts/TraningLayouts.csproj" />
+        <entry key="TraningLayouts/Styles/AppStyles.axaml" value="TraningLayouts/TraningLayouts.csproj" />
+        <entry key="TraningLayouts/Views/HomeView.axaml" value="TraningLayouts/TraningLayouts.csproj" />
+        <entry key="TraningLayouts/Views/HomwView.axaml" value="TraningLayouts/TraningLayouts.csproj" />
+        <entry key="TraningLayouts/Views/MainWindow.axaml" value="TraningLayouts/TraningLayouts.csproj" />
+        <entry key="TraningLayouts/Windows/LoginWindow.axaml" value="TraningLayouts/TraningLayouts.csproj" />
+        <entry key="TraningLayouts/Windows/MainWindow.axaml" value="TraningLayouts/TraningLayouts.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

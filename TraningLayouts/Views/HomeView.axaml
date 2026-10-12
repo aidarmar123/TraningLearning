@@ -1,0 +1,66 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:TraningLayouts.ViewModels"
+             xmlns:m="using:TraningLayouts.Models"
+             mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="750"
+             x:DataType="vm:HomeViewModel"
+             x:Class="TraningLayouts.Views.HomeView"
+             Classes="Page">
+
+    <Design.DataContext>
+        <vm:HomeViewModel />
+    </Design.DataContext>
+
+    <ScrollViewer>
+        <StackPanel Margin="28,24" Spacing="20">
+            <TextBlock Classes="PageTitle" Text="Обзор" />
+
+            <ItemsControl ItemsSource="{Binding Stats}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="1" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="m:StatCard">
+                        <Border Classes="Card" Margin="0,0,16,0">
+                            <StackPanel Spacing="4">
+                                <TextBlock Text="{Binding Title}" />
+                                <TextBlock Text="{Binding Value}" FontSize="30" FontWeight="Bold"
+                                           Classes.Alert="{Binding Alert}" />
+                                <TextBlock Classes="Muted" Classes.Alert="{Binding Alert}" Text="{Binding Caption}" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <Grid ColumnDefinitions="3*, 2*">
+                <StackPanel Spacing="16" Margin="0,0,16,0">
+                    <Border Classes="Card">
+                        <StackPanel>
+                            <TextBlock Classes="CardTitle" Text="Активные проекты" />
+                            <ItemsControl ItemsSource="{Binding Projects}" />
+                        </StackPanel>
+                    </Border>
+                    <Border Classes="Card">
+                        <StackPanel>
+                            <TextBlock Classes="CardTitle" Text="Последние задачи" />
+                            <ItemsControl ItemsSource="{Binding Tasks}" />
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <Border Grid.Column="1" Classes="Card" VerticalAlignment="Top">
+                    <StackPanel>
+                        <TextBlock Classes="CardTitle" Text="Календарь" />
+                        <Calendar FirstDayOfWeek="Monday" HorizontalAlignment="Stretch"
+                                  SelectedDate="{Binding Today, Mode=OneTime}" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,137 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="TraningLayouts.App"
+             xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             xmlns:local="using:TraningLayouts"
+             xmlns:m="using:TraningLayouts.Models"
+             xmlns:themes="clr-namespace:Material.Styles.Themes;assembly=Material.Styles"
+             RequestedThemeVariant="Light">
+
+    <!-- Шаблоны строк: используются на «Обзоре» и на страницах «Проекты», «Задачи» -->
+    <Application.DataTemplates>
+        <DataTemplate DataType="m:ProjectItem">
+            <Border Classes="Row">
+                <Grid ColumnDefinitions="*, *">
+                    <TextBlock Text="{Binding Name}" FontWeight="Medium" VerticalAlignment="Center" />
+                    <Grid Grid.Column="1" RowDefinitions="Auto, Auto" ColumnDefinitions="*, Auto">
+                        <Border Classes="Pill" Background="{Binding Tag.Background}">
+                            <TextBlock Text="{Binding Tag.Name}" Foreground="{Binding Tag.Foreground}" />
+                        </Border>
+                        <TextBlock Grid.Column="1" Classes="Muted" VerticalAlignment="Center"
+                                   Text="{Binding Progress, StringFormat={}{0}%}" />
+                        <ProgressBar Grid.Row="1" Grid.ColumnSpan="2" Margin="0,8,0,0"
+                                     Value="{Binding Progress}" Foreground="{Binding Accent}" />
+                    </Grid>
+                </Grid>
+            </Border>
+        </DataTemplate>
+        <DataTemplate DataType="m:TaskItem">
+            <Border Classes="Row">
+                <Grid ColumnDefinitions="Auto, *, 120, Auto">
+                    <CheckBox VerticalAlignment="Center" />
+                    <TextBlock Grid.Column="1" Text="{Binding Title}"
+                               VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                    <Border Grid.Column="2" Classes="Pill" Background="{Binding Tag.Background}">
+                        <TextBlock Text="{Binding Tag.Name}" Foreground="{Binding Tag.Foreground}" />
+                    </Border>
+                    <TextBlock Grid.Column="3" Classes="Muted" VerticalAlignment="Center"
+                               Text="{Binding Date, StringFormat={}{0:dd.MM.yyyy}}" />
+                </Grid>
+            </Border>
+        </DataTemplate>
+        <local:ViewLocator />
+    </Application.DataTemplates>
+
+    <!-- Цвета приложения для светлой и тёмной темы.
+         Тема переключается через Application.RequestedThemeVariant (страница «Настройки»). -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="PageBg" Color="#fbfbfd" />
+                    <SolidColorBrush x:Key="SidebarBg" Color="#f7f7fa" />
+                    <SolidColorBrush x:Key="CardBg" Color="White" />
+                    <SolidColorBrush x:Key="CardBorder" Color="#ececf2" />
+                    <SolidColorBrush x:Key="TextMain" Color="#1f1f2b" />
+                    <SolidColorBrush x:Key="TextMuted" Color="#8a8a99" />
+                    <SolidColorBrush x:Key="NavText" Color="#4a4a55" />
+                    <SolidColorBrush x:Key="NavHover" Color="#f0edf7" />
+                    <SolidColorBrush x:Key="NavSelectBg" Color="#e6e0fa" />
+                    <SolidColorBrush x:Key="NavSelectFg" Color="#5b3fd1" />
+                    <SolidColorBrush x:Key="TrackBg" Color="#ececf3" />
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="PageBg" Color="#17171c" />
+                    <SolidColorBrush x:Key="SidebarBg" Color="#1c1c22" />
+                    <SolidColorBrush x:Key="CardBg" Color="#222229" />
+                    <SolidColorBrush x:Key="CardBorder" Color="#2c2c35" />
+                    <SolidColorBrush x:Key="TextMain" Color="#f2f2f5" />
+                    <SolidColorBrush x:Key="TextMuted" Color="#8d8d9c" />
+                    <SolidColorBrush x:Key="NavText" Color="#c9c9d3" />
+                    <SolidColorBrush x:Key="NavHover" Color="#2a2a33" />
+                    <SolidColorBrush x:Key="NavSelectBg" Color="#5b3fd1" />
+                    <SolidColorBrush x:Key="NavSelectFg" Color="White" />
+                    <SolidColorBrush x:Key="TrackBg" Color="#33333d" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+
+    <Application.Styles>
+        <FluentTheme />
+        <themes:MaterialTheme BaseTheme="Inherit" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
+        <avalonia:MaterialIconStyles />
+
+        <!-- Общие стили страниц -->
+        <Style Selector="UserControl.Page">
+            <Setter Property="Background" Value="{DynamicResource PageBg}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextMain}" />
+        </Style>
+        <Style Selector="TextBlock.PageTitle">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+        <Style Selector="Border.Card">
+            <Setter Property="Background" Value="{DynamicResource CardBg}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource CardBorder}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="Padding" Value="16" />
+        </Style>
+        <Style Selector="TextBlock.CardTitle">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Margin" Value="0,0,0,8" />
+        </Style>
+        <Style Selector="TextBlock.Muted">
+            <Setter Property="Foreground" Value="{DynamicResource TextMuted}" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style Selector="TextBlock.Alert">
+            <Setter Property="Foreground" Value="#e0475b" />
+        </Style>
+        <Style Selector="Border.Pill">
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="8,3" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style Selector="Border.Pill > TextBlock">
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style Selector="Border.Row">
+            <Setter Property="BorderBrush" Value="{DynamicResource CardBorder}" />
+            <Setter Property="BorderThickness" Value="0,0,0,1" />
+            <Setter Property="Padding" Value="0,8" />
+        </Style>
+        <Style Selector="ContentPresenter:nth-last-child(1) > Border.Row">
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+        <Style Selector="ProgressBar">
+            <Setter Property="Background" Value="{DynamicResource TrackBg}" />
+            <Setter Property="Height" Value="6" />
+            <Setter Property="MinHeight" Value="6" />
+            <Setter Property="CornerRadius" Value="3" />
+        </Style>
+    </Application.Styles>
+</Application>

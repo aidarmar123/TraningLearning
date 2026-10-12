@@ -1,0 +1,11 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:TraningLayouts.ViewModels"
+             x:DataType="vm:SettingsViewModel"
+             x:Class="TraningLayouts.Views.SettingsView"
+             Classes="Page">
+    <StackPanel Margin="28,24" Spacing="20">
+        <TextBlock Classes="PageTitle" Text="Настройки" />
+        <CheckBox Content="Сменить тему" IsChecked="{Binding IsDark}" />
+    </StackPanel>
+</UserControl>

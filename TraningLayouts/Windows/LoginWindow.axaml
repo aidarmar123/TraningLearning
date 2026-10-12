@@ -1,0 +1,21 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:TraningLayouts.ViewModels"
+        x:Class="TraningLayouts.Windows.LoginWindow"
+        x:DataType="vm:LoginViewModel"
+        Width="800" Height="550"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource PageBg}"
+        Foreground="{DynamicResource TextMain}"
+        Title="Project Studio">
+
+    <Border Classes="Card" Width="320" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Spacing="12">
+            <TextBlock Classes="PageTitle" Text="Авторизация" />
+            <TextBox Watermark="Email" Text="{Binding Email}" />
+            <TextBox Watermark="Пароль" PasswordChar="•" Text="{Binding Password}" />
+            <Button Content="Войти" Command="{Binding LoginCommand}" IsDefault="True"
+                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" />
+        </StackPanel>
+    </Border>
+</Window>

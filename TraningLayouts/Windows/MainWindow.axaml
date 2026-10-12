@@ -1,0 +1,147 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:TraningLayouts.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="TraningLayouts.Windows.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Project Studio"
+        Width="1280" Height="800"
+        Background="{DynamicResource PageBg}">
+
+   <Window.Styles>
+        <Style Selector="Button.BNavigation">
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{DynamicResource NavText}" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="3,0,0,0" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Margin" Value="8,0" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <ContentPresenter Name="PART_ContentPresenter"
+                                      Background="{TemplateBinding Background}"
+                                      BorderBrush="{TemplateBinding BorderBrush}"
+                                      BorderThickness="{TemplateBinding BorderThickness}"
+                                      CornerRadius="{TemplateBinding CornerRadius}"
+                                      Padding="{TemplateBinding Padding}"
+                                      Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      Foreground="{TemplateBinding Foreground}"
+                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalContentAlignment="Center" />
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="Button.BNavigation StackPanel">
+            <Setter Property="Spacing" Value="14" />
+        </Style>
+        <Style Selector="Button.BNavigation avalonia|MaterialIcon">
+            <Setter Property="Width" Value="22" />
+            <Setter Property="Height" Value="22" />
+        </Style>
+        <Style Selector="Button.BNavigation TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style Selector="Button.BNavigation:pointerover">
+            <Setter Property="Background" Value="{DynamicResource NavHover}" />
+        </Style>
+        <Style Selector="Button.BNavigation.Select">
+            <Setter Property="BorderThickness" Value="1,0,0,0" />
+            <Setter Property="Background" Value="{DynamicResource NavSelectBg}" />
+            <Setter Property="Foreground" Value="{DynamicResource NavSelectFg}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource NavSelectFg}" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+    </Window.Styles>
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid RowDefinitions="*, Auto" Width="240" Background="{DynamicResource SidebarBg}">
+            <StackPanel Spacing="5" Margin="0,16">
+                <Button Name="BHome"
+                        Classes="BNavigation"
+                        Classes.Select="{Binding CurrentPage, Converter={x:Static ObjectConverters.Equal}, ConverterParameter=Home}"
+                        Command="{Binding HomeCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <avalonia:MaterialIcon Kind="ViewDashboardOutline" />
+                        <TextBlock Text="Обзор"></TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Button Name="BProjects" Classes="BNavigation"
+                        Classes.Select="{Binding CurrentPage, Converter={x:Static ObjectConverters.Equal}, ConverterParameter=Projects}"
+                        Command="{Binding ProjectsCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <avalonia:MaterialIcon Kind="FolderOutline" />
+                        <TextBlock Text="Проекты"></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Name="BTasks" Classes="BNavigation"
+                        Classes.Select="{Binding CurrentPage, Converter={x:Static ObjectConverters.Equal}, ConverterParameter=Tasks}"
+                        Command="{Binding TasksCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <avalonia:MaterialIcon Kind="CheckboxMarkedOutline" />
+                        <TextBlock Text="Задачи"></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Name="BCalendar" Classes="BNavigation"
+                        Classes.Select="{Binding CurrentPage, Converter={x:Static ObjectConverters.Equal}, ConverterParameter=Calendar}"
+                        Command="{Binding CalendarCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <avalonia:MaterialIcon Kind="Calendar" />
+                        <TextBlock Text="Календарь"></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Name="BTeam" Classes="BNavigation"
+                        Classes.Select="{Binding CurrentPage, Converter={x:Static ObjectConverters.Equal}, ConverterParameter=Teams}"
+                        Command="{Binding TeamsCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <avalonia:MaterialIcon Kind="AccountMultiple" />
+                        <TextBlock Text="Команда"></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Name="BOptions" Classes="BNavigation"
+                        Classes.Select="{Binding CurrentPage, Converter={x:Static ObjectConverters.Equal}, ConverterParameter=Options}"
+                        Command="{Binding OptionsCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <avalonia:MaterialIcon Kind="Settings" />
+                        <TextBlock Text="Настройки"></TextBlock>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Spacing="5" Margin="0,16">
+                <Button Name="BProfile" Classes="BNavigation"
+                        Classes.Select="{Binding CurrentPage, Converter={x:Static ObjectConverters.Equal}, ConverterParameter=Profile}"
+                        Command="{Binding ProfileCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <avalonia:MaterialIcon Kind="Account" />
+                        <TextBlock Text="{Binding FullName}"></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Name="BExit" Classes="BNavigation"
+                        Command="{Binding ExitCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <avalonia:MaterialIcon Kind="ExitToApp" />
+                        <TextBlock Text="Выйти"></TextBlock>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <ContentControl Grid.Column="1" Name="CCPages" Content="{Binding CurrentViewModel}"></ContentControl>
+    </Grid>
+</Window>
