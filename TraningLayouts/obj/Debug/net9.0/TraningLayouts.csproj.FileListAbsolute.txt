@@ -78,3 +78,4 @@
 /Users/aidarmardanov/Desktop/TraningLayouts/TraningLayouts/obj/Debug/net9.0/TraningLayouts.pdb
 /Users/aidarmardanov/Desktop/TraningLayouts/TraningLayouts/obj/Debug/net9.0/TraningLayouts.genruntimeconfig.cache
 /Users/aidarmardanov/Desktop/TraningLayouts/TraningLayouts/obj/Debug/net9.0/ref/TraningLayouts.dll
+/Users/aidarmardanov/Desktop/TraningLayouts/TraningLayouts/obj/Debug/net9.0/TraningLayouts.sourcelink.json
